@@ -285,26 +285,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 		return list;
 	}
 
-	public T[] arrayLevel(int level) {
-
-		LinkedList<T> list = arrayLevel(root, new LinkedList<T>(), level);
-
-		return makeArrayFromList(list);
-	}
-
-	private LinkedList<T> arrayLevel(BSTNode<T> node, LinkedList<T> list, int level) {
-
-		if (level >= 0 && !node.isEmpty()) {
-			arrayLevel((BSTNode<T>) node.getLeft(), list, level - 1);
-			if (level == 0) {
-				list.add(node.getData());
-			}
-			arrayLevel((BSTNode<T>) node.getRight(), list, level - 1);
-		}
-
-		return list;
-	}
-
 	protected T[] makeArrayFromList(List<T> list) {
 
 		int size = list.size();
@@ -331,39 +311,6 @@ public class BSTImpl<T extends Comparable<T>> implements BST<T> {
 			result = 1 + size((BSTNode<T>) node.getLeft()) + size((BSTNode<T>) node.getRight());
 		}
 		return result;
-	}
-
-	public int distance(T value1, T value2) {
-		int distance = -1;
-		
-		BSTNode<T> node1 = this.search(value1);
-		
-		if (!node1.isEmpty()) {
-			BSTNode<T> node2 = this.search(value2);
-			
-			if (!node2.isEmpty()) {
-				Stack<BSTNode<T>> stack1, stack2;
-				stack1 = toArrayParent(node1);
-				stack2 = toArrayParent(node2);
-				
-				while (!stack1.isEmpty() && !stack2.isEmpty() && stack1.peek().equals(stack2.peek())) {
-					stack1.pop();
-					stack2.pop();
-				}
-				
-				distance = stack1.size() + stack2.size();
-			}
-		}
-		return distance;
-	}
-
-	private Stack<BSTNode<T>> toArrayParent(BSTNode<T> node) {
-		Stack<BSTNode<T>> stack = new Stack<BSTNode<T>>();
-		while (node.getParent() != null) {
-			stack.push(node);
-			node = (BSTNode<T>) node.getParent();
-		}
-		return stack;
 	}
 
 }
