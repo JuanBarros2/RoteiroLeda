@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-07-26T16:21:33.767-0300</date>
+  <logger>JUAN VICTOR LYRA BARROS E BARROS</logger>
+  <level>FINE</level>
+  <message>File 116110207-JUAN VICTOR LYRA BARROS E BARROS.zip was received. It was sent by JUAN VICTOR LYRA BARROS E BARROS from IP 127.0.1.1</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2017-07-27T01:10:32.533-0300</date>
+  <logger>JUAN VICTOR LYRA BARROS E BARROS</logger>
+  <level>FINE</level>
+  <message>File 116110207-JUAN VICTOR LYRA BARROS E BARROS.zip was received. It was sent by JUAN VICTOR LYRA BARROS E BARROS from IP 192.168.15.8</message>
+</record>
