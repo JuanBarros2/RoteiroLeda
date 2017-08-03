@@ -101,6 +101,22 @@ public class StudentSkipListTest {
 		assertEquals(null, skip.search(30));
 		assertEquals(null, skip.search(9));
 	}
+	
+	@Test
+	public void testHeight(){
+		skip = new SkipListImpl<String>(5);
+		assertEquals(0, skip.height());
+		skip.insert(10, "A", 2);
+		assertEquals(2, skip.height());
+		skip.insert(20, "B", 1);
+		assertEquals(2, skip.height());
+		skip.remove(10);
+		assertEquals(1, skip.height());
+		skip.insert(15, "D", 3);
+		assertEquals(3, skip.height());
+		skip.insert(5, "E", 4);
+		assertEquals(4, skip.height());
+	}
 
 	@Test
 	public void testRemove() {

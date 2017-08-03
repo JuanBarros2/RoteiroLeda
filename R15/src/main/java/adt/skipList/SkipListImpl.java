@@ -87,8 +87,13 @@ public class SkipListImpl<T> implements SkipList<T> {
 
    @Override
    public int height() {
-      // TODO Auto-generated method stub
-      throw new UnsupportedOperationException("Not implemented yet!");
+	   int result = maxHeight - 1 ;
+	   
+	   while(result >= 0 && root.getForward(result) == NIL){
+		   result--;
+	   }
+	   
+	   return result + 1;
    }
 
    @Override
