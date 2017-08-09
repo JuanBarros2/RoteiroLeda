@@ -181,7 +181,6 @@ public class StudentSkipListTest {
 		skip.insert(17, "F", 2);
 		skip.insert(18, "G", 3);
 		skip.insert(25, "H", 2);
-		skip.insert(1, "H", 5);
 		
 		/*
 		 * Faça um algoritmo na skip list que imprime os nós da skip list por altura e ordem crescente. Por exemplo,
@@ -190,6 +189,38 @@ public class StudentSkipListTest {
 		 */
 		
 		array = skip.toArrayLevel();
-		assertEquals("[<8,3>, <14,4>, <21,3>, <4,4>, <12,2>, <18,3>, <17,4>, <25,2>]", Arrays.toString(array));
+		assertEquals("[<8,4>, <14,4>, <21,4>, <4,3>, <12,3>, <18,3>, <17,2>, <25,2>]", Arrays.toString(array));
+	}
+	
+	@Test
+	public void testChangeLevel(){
+		skip = new SkipListImpl<String>(5);
+		skip.insert(8, "8", 3);
+		skip.insert(7, "7", 1);
+		skip.insert(1, "1", 1);
+		skip.insert(4, "4", 2);
+		
+		skip.changeHeight(7, 2);
+		array = skip.toArrayLevel();
+		assertEquals("[<8,3>, <4,2>, <7,2>, <1,1>]", Arrays.toString(array));
+		skip.changeHeight(7, 1);
+		array = skip.toArrayLevel();
+		assertEquals("[<8,3>, <4,2>, <1,1>, <7,1>]", Arrays.toString(array));
+		
+		skip.changeHeight(4, 1);
+		array = skip.toArrayLevel();
+		assertEquals("[<8,3>, <1,1>, <4,1>, <7,1>]", Arrays.toString(array));
+		
+		skip.changeHeight(4, 3);
+		array = skip.toArrayLevel();
+		assertEquals("[<4,3>, <8,3>, <1,1>, <7,1>]", Arrays.toString(array));
+		
+		skip.changeHeight(8, 1);
+		array = skip.toArrayLevel();
+		assertEquals("[<4,3>, <1,1>, <7,1>, <8,1>]", Arrays.toString(array));
+		
+		skip.changeHeight(4, 1);
+		array = skip.toArrayLevel();
+		assertEquals("[<1,1>, <4,1>, <7,1>, <8,1>]", Arrays.toString(array));
 	}
 }
