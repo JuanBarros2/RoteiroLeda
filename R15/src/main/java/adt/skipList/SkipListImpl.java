@@ -30,7 +30,7 @@ public class SkipListImpl<T> implements SkipList<T> {
 
    @Override
    public void insert(int key, T newValue, int height) {
-      if (height >= 0 && height < maxHeight && newValue != null && key < Integer.MAX_VALUE && key > Integer.MIN_VALUE) {
+      if (height >= 0 && height <= maxHeight && newValue != null && key < Integer.MAX_VALUE && key > Integer.MIN_VALUE) {
          SkipListNode<T>[] updateNodes = new SkipListNode[maxHeight];
          SkipListNode<T> aux = root;
          for (int i = maxHeight - 1; i >= 0; i--) {
@@ -140,6 +140,26 @@ public class SkipListImpl<T> implements SkipList<T> {
       }
 
       return array;
+   }
+   
+   public SkipListNode<T>[] toArrayLevel(){
+	   SkipListNode<T>[] array = new SkipListNode[size()];
+	   
+	   int index = 0;
+	   for (int i = maxHeight - 1; i >= 0; i--) {
+		   SkipListNode<T> aux = root.getForward(i);
+           while (aux != NIL) {
+        	   if(aux.getForward().length == i + 1){
+        		   array[index] = aux;
+        		   index++;
+        	   }
+        	   
+        	   aux = aux.getForward(i);
+           }
+        }
+	   
+	   return array;
+
    }
 
 }

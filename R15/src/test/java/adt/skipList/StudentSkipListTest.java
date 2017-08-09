@@ -15,7 +15,7 @@ import adt.skipList.SkipListNode;
 
 public class StudentSkipListTest {
 
-	SkipList<String> skip;
+	SkipListImpl<String> skip;
 	SkipListNode<String>[] array;
 
 	@Before
@@ -168,5 +168,28 @@ public class StudentSkipListTest {
 		array = skip.toArray();
 		assertEquals("[<ROOT,4,4>, <NIL,4>]", Arrays.toString(array));
 		assertEquals(Integer.MAX_VALUE, array[0].getForward(0).getKey());
+	}
+	
+	@Test
+	public void testArrayLevel(){
+		skip = new SkipListImpl<String>(5);
+		skip.insert(8, "A", 4);
+		skip.insert(14, "B", 4);
+		skip.insert(21, "C", 4);
+		skip.insert(4, "D", 3);
+		skip.insert(12, "E", 3);
+		skip.insert(17, "F", 2);
+		skip.insert(18, "G", 3);
+		skip.insert(25, "H", 2);
+		skip.insert(1, "H", 5);
+		
+		/*
+		 * Faça um algoritmo na skip list que imprime os nós da skip list por altura e ordem crescente. Por exemplo,
+			se uam skip list possui nós com altura 4 (8, 14, 21) e nós com altura 3 (4, 12, 18) e nós com altura 2 (17,25):
+			[(4,3),(8,4),(12,3),(14,4),(17,2),(18,3),(21,4),(25,2), imprimiria a sequencia 8,14,21,4,12,18,17,25.
+		 */
+		
+		array = skip.toArrayLevel();
+		assertEquals("[<8,3>, <14,4>, <21,3>, <4,4>, <12,2>, <18,3>, <17,4>, <25,2>]", Arrays.toString(array));
 	}
 }
