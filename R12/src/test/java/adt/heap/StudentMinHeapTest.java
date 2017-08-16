@@ -13,14 +13,14 @@ import org.junit.Test;
 
 public class StudentMinHeapTest {
 
-	Heap<Integer> heap;
+	HeapImpl<Integer> heap;
 
 	@Before
 	public void setUp() {
 		// TODO Instancie seu comparator para fazer sua estrutura funcionar como
 		// uma min heap aqui. Use instanciacao anonima da interface
 		// Comparator!!!!
-		Comparator<Integer> comparator = (o1,o2) -> o2.compareTo(o1);
+		Comparator<Integer> comparator = (o1, o2) -> o2.compareTo(o1);
 		heap = new HeapImpl<Integer>(comparator);
 	}
 
@@ -112,4 +112,33 @@ public class StudentMinHeapTest {
 		assertTrue(isHeap);
 	}
 
+	@Test
+	public void mergeArrays() {
+		Integer[] odd = new Integer[] { 1, 3, 5, 7, 9, 11, 13, 15, 17, 19 };
+		Integer[] even = new Integer[] { 0, 2, 4, 6, 8, 12, 14 };
+
+		assertArrayEquals(new Integer[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 19 },
+				heap.mergeArrays(odd, even));
+	}
+
+	@Test
+	public void testSortLevel() {
+		heap.insert(8);
+		heap.insert(12);
+		heap.insert(-2);
+		heap.insert(7);
+		heap.insert(8);
+		heap.insert(-5);
+		heap.insert(14);
+		heap.insert(3);
+		heap.insert(-10);
+		heap.insert(0);
+
+		verifyHeap(new Integer[] { -10, -5, -2, 3, 0, 8, 14, 12, 7, 8 });
+
+		assertArrayEquals(new Integer[] { -10 }, heap.sortLevel(0));
+		assertArrayEquals(new Integer[] { -5, -2 }, heap.sortLevel(1));
+		assertArrayEquals(new Integer[] { 0, 3, 8, 14 }, heap.sortLevel(2));
+		assertArrayEquals(new Integer[] { 7, 8, 12 }, heap.sortLevel(3));
+	}
 }
